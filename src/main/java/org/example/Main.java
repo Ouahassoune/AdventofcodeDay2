@@ -10,6 +10,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         int safeReportsCount = 0;
+        int safeReportsCountafterdelete = 0;
         System.out.println("Entrez les rapports (une ligne par rapport). Tapez 'fin' pour arrêter.");
         while (scanner.hasNextLine()) {
             String reportLine = scanner.nextLine();
@@ -19,8 +20,13 @@ public class Main {
             if (Analyse_Rapport.rapportChecker(reportLine)) {
                 safeReportsCount++;
             }
+            if (Analyse_Rapport.rapportChecker2(reportLine)) {
+                safeReportsCountafterdelete++;
+            }
         }
         System.out.println("Nombre de rapports sûrs : " + safeReportsCount);
+        System.out.println("Nombre de rapports sûrs apres suppression : " + safeReportsCountafterdelete);
+
         scanner.close();
 
     }

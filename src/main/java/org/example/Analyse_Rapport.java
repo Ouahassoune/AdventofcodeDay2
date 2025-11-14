@@ -1,6 +1,8 @@
 package org.example;
 
 
+import java.util.ArrayList;
+import java.util.TreeSet;
 
 /**
  * @author Ouahassoune
@@ -53,9 +55,40 @@ public class Analyse_Rapport {
 
         return false;
 
-
-
     }
 
+    public static boolean rapportChecker2(String reportLine){
+        if(!reportLine.isBlank()){
+           if(!rapportChecker(reportLine)){
+               String trimmedReportLine = reportLine.trim();
+               String[] splittedReportLine = trimmedReportLine.split(" ");
 
+               ArrayList<Integer> rapportLine = new ArrayList<>();
+
+               // Convertir chaque niveau de String a Integer
+               for (String s : splittedReportLine) {
+                   rapportLine.add(Integer.parseInt(s));
+               }
+
+               for(int i=0; i < rapportLine.size(); i++){
+                   ArrayList<Integer> modifiedReport = new ArrayList<>(rapportLine);
+                   modifiedReport.remove(i);
+
+                   StringBuilder modifiedReportLine = new StringBuilder();
+                   for (Integer num : modifiedReport) {
+                       modifiedReportLine.append(num).append(" ");
+                   }
+
+                   if (rapportChecker(modifiedReportLine.toString().trim())) {
+                       return true;
+                   }
+               }
+
+           }
+           else{
+               return true ;
+           }
+        }
+        return false;
+    }
 }
